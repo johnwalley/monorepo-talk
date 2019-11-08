@@ -1,0 +1,49 @@
+{
+  "name": "cambridge-bumps-website",
+  "description": "Cambridge Bumps",
+  "version": "1.3.0",
+  "author": "John Walley <john@walley.org.uk>",
+  "dependencies": {
+    "babel-plugin-styled-components": "1.10.6",
+    "bootstrap": "^4.3.1",
+    "d3-bumps-chart": "1.0.0-beta.1",
+    "d3-selection": "1",
+    "d3-transition": "1",
+    "gatsby": "^2.13.82",
+    "gatsby-plugin-google-analytics": "^2.1.11",
+    "gatsby-plugin-netlify": "^2.1.10",
+    "gatsby-plugin-react-helmet": "^3.1.5",
+    "gatsby-plugin-styled-components": "^3.0.7",
+    "gatsby-source-filesystem": "^2.0.40",
+    "gatsby-transformer-json": "^2.1.11",
+    "lodash": "4.17.15",
+    "pdfkit": "^0.10.0",
+    "react": "^16.8.6",
+    "react-bumps-chart": "^0.8.1",
+    "react-dom": "^16.8.6",
+    "react-helmet": "^5.2.1",
+    "react-rowing-blades": "^1.5.2",
+    "react-sizes": "1",
+    "reactstrap": "8",
+    "styled-components": "^4.3.1",
+    "url-search-params-polyfill": "^6.0.0"
+  },
+  "keywords": [
+    "rowing"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnwalley/cambridge-bumps-website.git"
+  },
+  "license": "MIT",
+  "main": "n/a",
+  "scripts": {
+    "build": "gatsby build",
+    "develop": "gatsby develop",
+    "format": "prettier --trailing-comma es5 --no-semi --single-quote --write \"src/**/*.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "prettier": "1.18.2"
+  }
+}
