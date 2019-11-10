@@ -1,21 +1,21 @@
 module.exports = {
-  title: 'React Bumps Chart',
+  title: "React Bumps Chart",
   pagePerSection: false,
   sections: [
     {
-      name: 'React Bumps Chart',
-      content: 'docs/ReactBumpsChart.md',
+      name: "React Bumps Chart",
+      content: "docs/ReactBumpsChart.md"
     },
     {
-      name: 'Getting Started',
-      content: 'docs/GetStarted.md',
+      name: "Getting Started",
+      content: "docs/GetStarted.md"
     },
     {
-      name: 'Components',
-      components: './src/**/[A-Z]*.js',
-      exampleMode: 'expand',
-      usageMode: 'expand',
-    },
+      name: "Components",
+      components: "./src/**/[A-Z]*.js",
+      exampleMode: "expand",
+      usageMode: "expand"
+    }
   ],
   webpackConfig: {
     module: {
@@ -23,9 +23,17 @@ module.exports = {
         {
           test: /\.jsx?$/,
           exclude: /node_modules/,
-          loader: 'babel-loader',
+          loader: "babel-loader"
         },
-      ],
-    },
-  },
+        {
+          test: /\.jsx?$/,
+          include: /react-rowing-blades/,
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"]
+          }
+        }
+      ]
+    }
+  }
 };

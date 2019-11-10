@@ -1,43 +1,44 @@
-import babel from 'rollup-plugin-babel';
-import { terser } from 'rollup-plugin-terser';
-import resolve from 'rollup-plugin-node-resolve';
-import commonjs from 'rollup-plugin-commonjs';
-import pkg from './package.json';
+import babel from "rollup-plugin-babel";
+import { terser } from "rollup-plugin-terser";
+import resolve from "rollup-plugin-node-resolve";
+import commonjs from "rollup-plugin-commonjs";
+import pkg from "./package.json";
 
 export default [
   {
-    input: 'src/index.js',
-    external: ['react', 'styled-components'],
+    input: "src/index.js",
+    external: ["react", "styled-components"],
     plugins: [
       babel({
-        exclude: 'node_modules/**',
+        exclude: /node_modules/,
+        presets: ["@babel/preset-react"]
       }),
       resolve(),
       commonjs({
         namedExports: {
-          'node_modules/react-sizeme/dist/react-sizeme.js': ['withSize'],
-        },
+          "react-sizeme": ["withSize"]
+        }
       }),
-      terser(),
+      terser()
     ],
     output: {
       file: pkg.main,
-      format: 'umd',
-      name: 'reactRowingBlades',
-      esModule: false,
-    },
+      format: "umd",
+      name: "reactRowingBlades",
+      esModule: false
+    }
   },
   {
-    input: 'src/index.js',
-    external: ['react', 'styled-components'],
+    input: "src/index.js",
+    external: ["react", "styled-components"],
     plugins: [
       babel({
-        exclude: 'node_modules/**',
-      }),
+        exclude: "node_modules/**"
+      })
     ],
     output: {
-      file: 'esm/index.js',
-      format: 'esm',
-    },
-  },
+      file: "esm/index.js",
+      format: "esm"
+    }
+  }
 ];

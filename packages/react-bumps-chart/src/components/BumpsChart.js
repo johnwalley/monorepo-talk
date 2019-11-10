@@ -1,37 +1,37 @@
-import React, { useMemo, useState } from 'react';
-import styled from 'styled-components';
-import { line } from 'd3-shape';
-import { voronoi } from 'd3-voronoi';
-import { merge, range } from 'd3-array';
-import { scaleLinear } from 'd3-scale';
-import { withSize } from 'react-sizeme';
+import React, { useMemo, useState } from "react";
+import styled from "styled-components";
+import { line } from "d3-shape";
+import { voronoi } from "d3-voronoi";
+import { merge, range } from "d3-array";
+import { scaleLinear } from "d3-scale";
+import { withSize } from "react-sizeme";
 
-import Blade, { shortShortNames, abbreviations } from 'react-rowing-blades';
+import Blade, { shortShortNames, abbreviations } from "react-rowing-blades";
 
 const UNSELECTED_OPACITY = 0.7;
 const MOBILE_WIDTH = 440;
 
 const roman = [
-  'I',
-  'II',
-  'III',
-  'IV',
-  'V',
-  'VI',
-  'VII',
-  'VIII',
-  'IX',
-  'X',
-  'XI',
-  'XII',
-  'XIII',
-  'XIV',
-  'XV',
-  'XVI',
-  'XVII',
-  'XVIII',
-  'XIX',
-  'XX',
+  "I",
+  "II",
+  "III",
+  "IV",
+  "V",
+  "VI",
+  "VII",
+  "VIII",
+  "IX",
+  "X",
+  "XI",
+  "XII",
+  "XIII",
+  "XIV",
+  "XV",
+  "XVI",
+  "XVII",
+  "XVIII",
+  "XIX",
+  "XX"
 ];
 
 const calculateFontSize = width => {
@@ -84,17 +84,17 @@ const BladeWrapper = styled.div`
 `;
 
 const Position = styled.div`
-  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+  font-weight: ${props => (props.active ? "bold" : "normal")};
 `;
 
 const Label = styled.div`
   flex: 0 0 auto;
-  font-weight: ${props => (props.active ? 'bold' : 'normal')};
+  font-weight: ${props => (props.active ? "bold" : "normal")};
 `;
 
 const StyledBlade = styled(Blade)`
   flex: 0 0 auto;
-  transform: ${props => (props.reverse ? 'scale(-1, 1)' : null)};
+  transform: ${props => (props.reverse ? "scale(-1, 1)" : null)};
 `;
 
 const StyledSvg = styled.svg`
@@ -106,14 +106,14 @@ const StyledSvg = styled.svg`
 const Line = styled.path`
   fill: none;
   stroke: black;
-  stroke-width: ${props => (props.active ? '1.5px' : '1px')};
+  stroke-width: ${props => (props.active ? "1.5px" : "1px")};
   stroke-dasharray: ${props =>
-    props.blades ? '10,5' : props.spoons ? '5,5' : null};
+    props.blades ? "10,5" : props.spoons ? "5,5" : null};
   opacity: ${props => (props.active ? 1 : UNSELECTED_OPACITY)};
 `;
 
 const BumpsChart = ({ data, size: { width } }) => {
-  const [hover, setHover] = useState('');
+  const [hover, setHover] = useState("");
 
   const heightOfOneCrew = width < MOBILE_WIDTH ? 12 : 20;
   const bladeSize = width < MOBILE_WIDTH ? 22 : 36;
@@ -123,17 +123,17 @@ const BumpsChart = ({ data, size: { width } }) => {
   let abbr;
 
   switch (data.set) {
-    case 'May Bumps':
-    case 'Lent Bumps':
+    case "May Bumps":
+    case "Lent Bumps":
       names = shortShortNames.cambridge;
       abbr = abbreviations.cambridge;
       break;
-    case 'Summer Eights':
-    case 'Torpids':
+    case "Summer Eights":
+    case "Torpids":
       names = shortShortNames.oxford;
       abbr = abbreviations.oxford;
       break;
-    case 'Town Bumps':
+    case "Town Bumps":
       names = shortShortNames.uk;
       abbr = Object.assign(
         {},
@@ -147,7 +147,7 @@ const BumpsChart = ({ data, size: { width } }) => {
   const crews = data.crews
     .sort((a, b) => a.values[0].pos - b.values[0].pos)
     .map(crew => {
-      const name = crew.name.replace(/ ?\d+$/g, '');
+      const name = crew.name.replace(/ ?\d+$/g, "");
 
       let code = Object.keys(names).find(key => names[key] === abbr[name]);
 
@@ -158,14 +158,14 @@ const BumpsChart = ({ data, size: { width } }) => {
       }
 
       if (!code) {
-        if (name === 'LMBC') {
-          code = 'lmb';
-        } else if (name === '1st and 3rd') {
-          code = 'ftt';
+        if (name === "LMBC") {
+          code = "lmb";
+        } else if (name === "1st and 3rd") {
+          code = "ftt";
         } else if (name === "St Catharine's") {
-          code = 'scc';
+          code = "scc";
         } else if (name === "St Edmund's") {
-          code = 'sec';
+          code = "sec";
         }
       }
 
@@ -177,9 +177,9 @@ const BumpsChart = ({ data, size: { width } }) => {
         label:
           names[code] +
           (number
-            ? ` ${data.set === 'Town Bumps' ? number : roman[number - 1]}`
-            : ''),
-        name: crew.name,
+            ? ` ${data.set === "Town Bumps" ? number : roman[number - 1]}`
+            : ""),
+        name: crew.name
       };
     });
 
@@ -224,7 +224,7 @@ const BumpsChart = ({ data, size: { width } }) => {
             <Line
               key={crew.name}
               d={l(crew.values)}
-              active={hover === '' || hover === crew.name}
+              active={hover === "" || hover === crew.name}
               blades={crew.valuesSplit[0].blades}
               spoons={crew.valuesSplit[0].spoons}
             />
@@ -242,12 +242,12 @@ const BumpsChart = ({ data, size: { width } }) => {
             .map((polygon, i) => (
               <path
                 key={i}
-                d={polygon ? 'M' + polygon.join('L') + 'Z' : null}
+                d={polygon ? "M" + polygon.join("L") + "Z" : null}
                 fill="none"
                 stroke="none"
                 pointerEvents="all"
                 onMouseEnter={() => setHover(polygon.data.name)}
-                onMouseLeave={() => setHover('')}
+                onMouseLeave={() => setHover("")}
               />
             ))}
         </g>
@@ -267,7 +267,7 @@ const BumpsChart = ({ data, size: { width } }) => {
                 y={i * heightOfOneCrew - 0.5}
                 width="100%"
                 height={heightOfOneCrew}
-                fill={i % 2 ? '#f2f2f2' : 'none'}
+                fill={i % 2 ? "#f2f2f2" : "none"}
                 stroke="none"
               />
             ))}
@@ -307,15 +307,15 @@ const BumpsChart = ({ data, size: { width } }) => {
             <Crew
               key={i}
               onMouseEnter={() => setHover(d.name)}
-              onMouseLeave={() => setHover('')}
-              active={hover === '' || hover === d.name}
+              onMouseLeave={() => setHover("")}
+              active={hover === "" || hover === d.name}
               height={heightOfOneCrew}
             >
               <BladeWrapper width={bladeWrapperWidth}>
                 <Position active={hover === d.name}>
                   {placeInDivision[i]}
                 </Position>
-                <StyledBlade club={d.code} size={bladeSize} reverse />
+                <StyledBlade club={d.code} size={bladeSize} reverse rotate/>
               </BladeWrapper>
               <Label active={hover === d.name}>{d.label}</Label>
             </Crew>
@@ -329,8 +329,8 @@ const BumpsChart = ({ data, size: { width } }) => {
             <Crew
               key={i}
               onMouseEnter={() => setHover(crews[finishOrder[i]].name)}
-              onMouseLeave={() => setHover('')}
-              active={hover === '' || hover === crews[finishOrder[i]].name}
+              onMouseLeave={() => setHover("")}
+              active={hover === "" || hover === crews[finishOrder[i]].name}
               height={heightOfOneCrew}
             >
               <Label active={hover === crews[finishOrder[i]].name}>
