@@ -315,7 +315,7 @@ const BumpsChart = ({ data, size: { width } }) => {
                 <Position active={hover === d.name}>
                   {placeInDivision[i]}
                 </Position>
-                <StyledBlade club={d.code} size={bladeSize} reverse rotate />
+                <StyledBlade club={d.code} size={bladeSize} reverse />
               </BladeWrapper>
               <Label active={hover === d.name}>{d.label}</Label>
             </Crew>
