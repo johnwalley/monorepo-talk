@@ -66,7 +66,7 @@ Use source code
       dur={`${Math.random(2) + 1}s`}
       repeatCount="indefinite"
     />
-  );
+  )
 }
 ```
 
