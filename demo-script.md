@@ -63,7 +63,7 @@ Use source code
       type="rotate"
       from="0 250 115"
       to="360 250 115"
-      dur={`${Math.random(2) + 1}s`}
+      dur={`1s`}
       repeatCount="indefinite"
     />
   )
