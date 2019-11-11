@@ -2,9 +2,15 @@
 
 echo "Setting up demo"
 
+echo "clean up"
+
+rm -R ./node_modules
+
 echo "[react-rowing-blades]"
 
 cd packages/react-rowing-blades
+rm -R ./esm
+rm -R ./umd
 yarn unlink
 yarn install
 
