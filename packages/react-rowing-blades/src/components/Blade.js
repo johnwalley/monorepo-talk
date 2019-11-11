@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Blade = React.forwardRef(({ className, size, club }, ref) => {
+const Blade = React.forwardRef(({ className, size, club, rotate }, ref) => {
   let decal;
   let fill;
 
@@ -371,7 +371,7 @@ const Blade = React.forwardRef(({ className, size, club }, ref) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
-      {...size !== undefined && { width: size, height: (size * 230) / 500 }}
+      {...(size !== undefined && { width: size, height: (size * 230) / 500 })}
       viewBox="0 0 500 230"
       ref={ref}
       className={className}
@@ -387,6 +387,17 @@ const Blade = React.forwardRef(({ className, size, club }, ref) => {
         </clipPath>
       </defs>
       <g>
+        {rotate && (
+          <animateTransform
+            attributeName="transform"
+            attributeType="XML"
+            type="rotate"
+            from="0 250 115"
+            to="360 250 115"
+            dur={`1s`}
+            repeatCount="indefinite"
+          />
+        )}
         <use
           xlinkHref="#spoonPath"
           style={{ stroke: 'black', strokeWidth: 1, fill: fill }}

@@ -2,5 +2,16 @@
   "private": true,
   "workspaces": [
     "packages/*"
-  ]
+  ],
+  "name": "monorepo-talk",
+  "devDependencies": {
+    "lerna": "^3.18.4"
+  },
+  "scripts": {
+    "lint": "lerna run lint",
+    "test": "jest",
+    "build": "lerna run prepare --scope=react-rowing-blades && lerna run prepare --scope=react-bumps-chart && lerna run build --scope=cambridge-bumps-website",
+    "develop:charts": "lerna run styleguide --scope=react-bumps-chart",
+    "develop:blades": "lerna run styleguide --scope=react-rowing-blades"
+  }
 }
